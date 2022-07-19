@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/alexg/Desktop/Dog-Grooming-System/src/Root/DogParlorSystem.java</file>
-            <file>file:/C:/Users/alexg/Desktop/Dog-Grooming-System/src/Gui/LoginPage.java</file>
+            <file>file:/C:/Users/alexg/Desktop/Parlor%20System/Dog-Parlor-System/src/Backend/Backend.java</file>
+            <file>file:/C:/Users/alexg/Desktop/Parlor%20System/Dog-Parlor-System/src/Controllers/LoginController.java</file>
+            <file>file:/C:/Users/alexg/Desktop/Parlor%20System/Dog-Parlor-System/src/Models/StaffMember.java</file>
+            <file>file:/C:/Users/alexg/Desktop/Parlor%20System/Dog-Parlor-System/src/Services/SendEmail.java</file>
         </group>
     </open-files>
 </project-private>
