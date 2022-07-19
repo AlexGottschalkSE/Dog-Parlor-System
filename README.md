@@ -1,2 +1,2 @@
 # Dog-Grooming-System
-This is a system to manage a dog grooming parlor
+This app is an administration tool to manage a dog/cat parlor. It is used by staff members and by owners.
