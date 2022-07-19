@@ -1,2 +1,2 @@
-# Dog-Parlor-System
-This Repository is for a Dog Parlor System
+# Dog-Grooming-System
+This is a system to manage a dog grooming parlor
