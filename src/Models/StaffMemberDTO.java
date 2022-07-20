@@ -1,15 +1,22 @@
 package Models;
 
-public class StaffMember {
+public class StaffMemberDTO {
 
     private int staffID;
     private String name;
     private String surname;
-    private String password;
     private int permission;
+    private static String OTP;
     private String email;
+    public StaffMemberDTO() {
+    }
 
-    public StaffMember() {
+    public StaffMemberDTO(StaffMember staff) {
+        this.name = staff.getName();
+        this.surname = staff.getSurname();
+        this.permission = staff.getPermission();
+        this.staffID = staff.getStaffID();
+        this.email = staff.getEmail();
     }
 
     public int getStaffID() {
@@ -44,12 +51,12 @@ public class StaffMember {
         this.permission = permission;
     }
 
-    public String getPassword() {
-        return password;
+    public static String getOTP() {
+        return OTP;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public static void setOTP(String code) {
+        OTP = code;
     }
 
     public String getEmail() {
@@ -59,4 +66,5 @@ public class StaffMember {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
