@@ -6,6 +6,8 @@
 package Gui;
 
 import Controllers.LoginController;
+import Gui.AdminPages.AdminMainPage;
+import Gui.StaffPages.StaffMainPage;
 import Models.StaffMemberDTO;
 import Services.CreateOTP;
 import Services.Security;
@@ -42,6 +44,8 @@ public class LoginPage extends javax.swing.JFrame {
         surnameInput = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        loginButton1 = new javax.swing.JButton();
+        loginButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 153));
@@ -103,6 +107,26 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
 
+        loginButton1.setBackground(new java.awt.Color(255, 255, 255));
+        loginButton1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 18)); // NOI18N
+        loginButton1.setText("Boss");
+        loginButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        loginButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loginButton1MouseClicked(evt);
+            }
+        });
+
+        loginButton2.setBackground(new java.awt.Color(255, 255, 255));
+        loginButton2.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 18)); // NOI18N
+        loginButton2.setText("Staff");
+        loginButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        loginButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loginButton2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -118,7 +142,10 @@ public class LoginPage extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(156, 156, 156)
-                        .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(loginButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loginButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(103, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -138,7 +165,11 @@ public class LoginPage extends javax.swing.JFrame {
                 .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(loginButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(loginButton1)
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,34 +200,48 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_surnameInputActionPerformed
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
-        String name = nameInput.getText();
+
         String surname = surnameInput.getText();
         String encrpytedPassword = "";
-        
+
         try {
             encrpytedPassword = (Security.encryptString(passwordInput.getText()));
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        StaffMemberDTO member = LoginController.findStaffMember(surname, encrpytedPassword);
-        if (member == null) {
+        StaffMemberDTO staffMemberDetails = LoginController.findStaffMember(surname, encrpytedPassword);
+        if (staffMemberDetails == null) {
             this.hide();
             this.setVisible(true);
         } else {
             String code = CreateOTP.createCode();
             StaffMemberDTO.setOTP(code);
-            SendEmail msg = new SendEmail(member.getEmail(), "Welcome back " + member.getName(), "Your OTP is: " + code);
+            SendEmail msg = new SendEmail(staffMemberDetails.getEmail(), "Welcome back " + staffMemberDetails.getName(), "Your OTP is: " + code);
             OTPForm form = new OTPForm();
             form.setVisible(true);
             form.setPrevious(this);
-            form.setUserDetails(member);
+            form.setUserDetails(staffMemberDetails);
         }
     }//GEN-LAST:event_loginButtonMouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void loginButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButton1MouseClicked
+        AdminMainPage page = new AdminMainPage();
+        StaffMemberDTO staffMemberDetails = LoginController.findStaffMember("Boss", "3f462bdfa4ef03329b86779baf5d7601c3899dcb47d25249ea07c852373353ffe7d450226975eccfe566887863b0422971f51203492bca4cc12f32a08217555c");
+        page.setStaffMemberDetails(staffMemberDetails);
+        page.setVisible(true);
+    }//GEN-LAST:event_loginButton1MouseClicked
+
+    private void loginButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButton2MouseClicked
+        StaffMainPage page = new StaffMainPage();
+        StaffMemberDTO staffMemberDetails = LoginController.findStaffMember("Staff", "9040a19ce8acee009516b4ea917066e06a5deb15f5879c5645bf3e9b7c8877e512be42bccdc08b2370194d9427adcf1855fce60036fa73f689a281d898fb1a48");
+        page.setStaffMemberDetails(staffMemberDetails);
+        page.setVisible(true);
+    }//GEN-LAST:event_loginButton2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -238,6 +283,8 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton loginButton;
+    private javax.swing.JButton loginButton1;
+    private javax.swing.JButton loginButton2;
     private javax.swing.JTextField nameInput;
     private javax.swing.JTextField passwordInput;
     private javax.swing.JTextField surnameInput;

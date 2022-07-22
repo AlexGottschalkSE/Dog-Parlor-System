@@ -5,6 +5,8 @@
  */
 package Gui;
 
+import Gui.AdminPages.AdminMainPage;
+import Gui.StaffPages.StaffMainPage;
 import Models.StaffMemberDTO;
 import Services.CreateOTP;
 
@@ -14,7 +16,7 @@ import Services.CreateOTP;
  */
 public class OTPForm extends javax.swing.JFrame {
 
-    StaffMemberDTO member;
+    StaffMemberDTO staffMemberDetails;
     LoginPage previous;
 
     /**
@@ -153,24 +155,35 @@ public class OTPForm extends javax.swing.JFrame {
 
     private void validateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_validateButtonMouseClicked
         // TODO add your handling code here:
-        CreateOTP create = new CreateOTP();
         String enteredOTP = otpText.getText();
         String expectedOTP = StaffMemberDTO.getOTP();
         if (enteredOTP.equals(expectedOTP)) {
-            MainPage mainMenu = new MainPage();
-            //mainMenu.setUserDetails(member);
-            this.setVisible(false);
-            previous.setVisible(false);
-            mainMenu.setVisible(true);
+            switch (staffMemberDetails.getPermission()) {
+                case 1:
+                    StaffMainPage StaffPage = new StaffMainPage();
+                    StaffPage.setStaffMemberDetails(staffMemberDetails);
+                    this.setVisible(false);
+                    previous.setVisible(false);
+                    StaffPage.setVisible(true);
+                    break;
+                case 2:
+                    AdminMainPage AdminPage = new AdminMainPage();
+                    AdminPage.setStaffMemberDetails(staffMemberDetails);
+                    this.setVisible(false);
+                    previous.setVisible(false);
+                    AdminPage.setVisible(true);
+                    break;
+            }
         }
+
     }//GEN-LAST:event_validateButtonMouseClicked
 
     private void validateButtonAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_validateButtonAncestorAdded
-        
+
     }//GEN-LAST:event_validateButtonAncestorAdded
 
-    public void setUserDetails(StaffMemberDTO member) {
-        this.member = member;
+    public void setUserDetails(StaffMemberDTO details) {
+        this.staffMemberDetails = details;
     }
 
     public void setPrevious(LoginPage prev) {
