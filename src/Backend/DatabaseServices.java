@@ -111,4 +111,102 @@ public class DatabaseServices {
         }
         return false;
     }
+
+    public static boolean updateStaffMember(StaffMember newDetails) throws SQLException {
+        try {
+            connection = getConn();
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE STAFF SET surname = ?, password = ?, email = ?, permission = ? WHERE surname = ?");
+            statement.setString(1, newDetails.getSurname());
+            statement.setString(2, newDetails.getPassword());
+            statement.setString(3, newDetails.getEmail());
+            statement.setInt(4, newDetails.getPermission());
+            statement.setString(5, newDetails.getName());
+            statement.executeUpdate();
+            return true;
+        } catch (Exception exc) {
+        } finally {
+            connection.close();
+        }
+        return false;
+    }
+
+    public static boolean addNewDogBreed(String name) throws SQLException {
+        try {
+            connection = getConn();
+            if (connection != null) {
+                PreparedStatement statement = connection.prepareStatement(
+                        "INSERT INTO DOGBREEDS(name) VALUES (?)");
+                statement.setString(1, name);
+                statement.executeUpdate();
+                return true;
+            }
+        } catch (Exception exc) {
+            System.out.println(exc);
+
+        } finally {
+            connection.close();
+        }
+        return false;
+    }
+
+    public static boolean removeDogBreed(String name) throws SQLException {
+        try {
+            connection = getConn();
+            if (connection != null) {
+                PreparedStatement removalStatement = connection.prepareStatement(
+                        "DELETE FROM DOGBREEDS WHERE name = ?");
+                removalStatement.setString(1, name);
+                removalStatement.executeUpdate();
+
+                return true;
+            }
+        } catch (Exception exc) {
+            System.out.println(exc);
+
+        } finally {
+            connection.close();
+        }
+        return false;
+    }
+
+    public static boolean addNewCatBreed(String name) throws SQLException {
+        try {
+            connection = getConn();
+            if (connection != null) {
+                PreparedStatement statement = connection.prepareStatement(
+                        "INSERT INTO CATBREEDS(name) VALUES (?)");
+                statement.setString(1, name);
+                statement.executeUpdate();
+                return true;
+            }
+        } catch (Exception exc) {
+            System.out.println(exc);
+
+        } finally {
+            connection.close();
+        }
+        return false;
+    }
+
+    public static boolean removeCatBreed(String name) throws SQLException {
+        try {
+            connection = getConn();
+            if (connection != null) {
+                PreparedStatement removalStatement = connection.prepareStatement(
+                        "DELETE FROM CATBREEDS WHERE name = ?");
+                removalStatement.setString(1, name);
+                removalStatement.executeUpdate();
+
+                return true;
+            }
+        } catch (Exception exc) {
+            System.out.println(exc);
+
+        } finally {
+            connection.close();
+        }
+        return false;
+    }
+
 }
