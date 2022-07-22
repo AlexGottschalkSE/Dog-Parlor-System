@@ -2,7 +2,7 @@ package Models;
 
 public class StaffMember {
 
-    private int staffID;
+    private int staffID = 0;
     private String name;
     private String surname;
     private String password;
@@ -10,6 +10,15 @@ public class StaffMember {
     private String email;
 
     public StaffMember() {
+    }
+
+
+    public StaffMember(String name, String surname, String password, int permission, String email) {
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.permission = permission;
+        this.email = email;
     }
 
     public int getStaffID() {
