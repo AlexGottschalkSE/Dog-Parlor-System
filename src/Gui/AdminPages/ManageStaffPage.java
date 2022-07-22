@@ -69,6 +69,19 @@ public class ManageStaffPage extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         permissionTypeInput = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        newSurnameInput = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        newEmailInput = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        newPasswordInput = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        newPermissionInput = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        oldSurnameInput = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
@@ -197,7 +210,7 @@ public class ManageStaffPage extends javax.swing.JFrame {
                 .addComponent(dismissalReasonInput, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -299,6 +312,118 @@ public class ManageStaffPage extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+
+        jLabel18.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
+        jLabel18.setText("UPDATE STAFF MEMBER");
+        jLabel18.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        jLabel20.setText("New Surname");
+
+        newSurnameInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        newSurnameInput.setText("Enter Surname");
+        newSurnameInput.setBorder(null);
+        newSurnameInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newSurnameInputActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Confirm");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
+        jLabel21.setText("New Email");
+
+        newEmailInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        newEmailInput.setText("Enter Email");
+        newEmailInput.setBorder(null);
+
+        jLabel22.setText("New Password");
+
+        newPasswordInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        newPasswordInput.setText("Enter Password");
+        newPasswordInput.setBorder(null);
+
+        jLabel23.setText("New Permission Type");
+
+        newPermissionInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        newPermissionInput.setText("Enter Admin/Staff");
+        newPermissionInput.setBorder(null);
+
+        jLabel24.setText("Old Surname");
+
+        oldSurnameInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        oldSurnameInput.setText("Enter Surname");
+        oldSurnameInput.setBorder(null);
+        oldSurnameInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oldSurnameInputActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 24, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addGap(20, 20, 20))))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel20)
+                    .addComponent(newSurnameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21)
+                    .addComponent(newEmailInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22)
+                    .addComponent(newPasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23)
+                    .addComponent(newPermissionInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24)
+                    .addComponent(oldSurnameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(jLabel18)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(oldSurnameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newSurnameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newEmailInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newPasswordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newPermissionInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -308,7 +433,9 @@ public class ManageStaffPage extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -320,7 +447,8 @@ public class ManageStaffPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -338,12 +466,12 @@ public class ManageStaffPage extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         jLabel10.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel10.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jLabel10AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -509,12 +637,53 @@ public class ManageStaffPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void dismissalReasonInputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dismissalReasonInputMouseClicked
-    
+
     }//GEN-LAST:event_dismissalReasonInputMouseClicked
 
     private void dismissalReasonInputMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dismissalReasonInputMouseExited
-       
+
     }//GEN-LAST:event_dismissalReasonInputMouseExited
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        String oldSurname = oldSurnameInput.getText();
+        String newSurname = newSurnameInput.getText();
+        String newEmail = newEmailInput.getText();
+        String newPassword = newPasswordInput.getText();
+        String newPermission = newPermissionInput.getText();
+        String encryptedNewPassword = "";
+        int newPermissionID = 0;
+
+        try {
+            encryptedNewPassword = (Security.encryptString(newPassword));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        switch (newPermission) {
+            case "Admin":
+                newPermissionID = 2;
+                break;
+            case "Staff":
+                newPermissionID = 1;
+                break;
+        }
+
+        StaffMember updateMember = new StaffMember(oldSurname, newSurname, encryptedNewPassword, newPermissionID, newEmail);
+
+        if (AdminController.updateStaffMember(updateMember) == false) {
+            System.out.println("Member could not be updated");
+        } else {
+            System.out.println("Member details updated");
+        }
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void newSurnameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newSurnameInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newSurnameInputActionPerformed
+
+    private void oldSurnameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldSurnameInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oldSurnameInputActionPerformed
 
     private String getDate() {
         LocalDateTime myDateObj = LocalDateTime.now();
@@ -570,6 +739,7 @@ public class ManageStaffPage extends javax.swing.JFrame {
     private javax.swing.JTextField emailInput;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -579,7 +749,13 @@ public class ManageStaffPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -591,8 +767,14 @@ public class ManageStaffPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField nameInput;
+    private javax.swing.JTextField newEmailInput;
+    private javax.swing.JTextField newPasswordInput;
+    private javax.swing.JTextField newPermissionInput;
+    private javax.swing.JTextField newSurnameInput;
+    private javax.swing.JTextField oldSurnameInput;
     private javax.swing.JTextField passwordInput;
     private javax.swing.JTextField permissionTypeInput;
     private javax.swing.JTextField surnameInput;
