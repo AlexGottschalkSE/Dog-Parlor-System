@@ -2,6 +2,7 @@ package Models;
 
 public class Customer {
 
+    private int customerID;
     private String name;
     private String surname;
     private String email;
@@ -47,5 +48,13 @@ public class Customer {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public int getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
     }
 }

@@ -1,7 +1,12 @@
 package Backend;
 
+import Models.Booking;
+import Models.Customer;
+import Models.Dog;
 import Models.StaffMember;
 import java.sql.*;
+import static java.sql.Statement.RETURN_GENERATED_KEYS;
+import java.util.ArrayList;
 
 public class DatabaseServices {
 
@@ -209,4 +214,130 @@ public class DatabaseServices {
         return false;
     }
 
+    //STAFF BACKEND FUNCTIONALITY
+    public static void manageDogBooking(Customer customerDetails, Booking bookingDetails, ArrayList dogs) throws SQLException {
+        try {
+            connection = getConn();
+
+            if (connection != null) {
+                int foundCustomerID = checkForCustomerExistance(customerDetails);
+                if (foundCustomerID > 0) {
+                    //Found customer in database
+                    addBooking(foundCustomerID, bookingDetails);
+                    addDogs(foundCustomerID, dogs);
+                } else {
+                    int newCustomerID = addNewCustomer(customerDetails);
+                    addBooking(newCustomerID, bookingDetails);
+                    addDogs(newCustomerID, dogs);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            connection.close();
+        }
+    }
+
+    public static int checkForCustomerExistance(Customer customerDetails) throws SQLException {
+        try {
+            connection = getConn();
+            if (connection != null) {
+                PreparedStatement addBookingStatement = connection.prepareStatement(
+                        "SELECT * FROM CUSTOMERS WHERE EMAIL = ?");
+                addBookingStatement.setString(1, customerDetails.getEmail());
+                ResultSet customerRs = addBookingStatement.executeQuery();
+
+                if (customerRs.next()) {
+                    int customerID = (customerRs.getInt("customerID"));
+                    return customerID;
+                }
+
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            connection.close();
+        }
+        return 0;
+    }
+
+    //METHOD TO ADD BOOKING TO DATABASE
+    public static boolean addBooking(int customerID, Booking bookingDetails) throws SQLException {
+        try {
+            connection = getConn();
+            if (connection != null) {
+                PreparedStatement addBookingStatement = connection.prepareStatement(
+                        "INSERT INTO BOOKINGS(DateOfBooking, TimeOfBooking, AmountOfPets, TotalCost, CustomerID) VALUES (?,?,?,?,?)");
+                addBookingStatement.setString(1, bookingDetails.getDate());
+                addBookingStatement.setString(2, bookingDetails.getTime());
+                addBookingStatement.setInt(3, bookingDetails.getAmountOfDogs());
+                addBookingStatement.setDouble(4, bookingDetails.getTotalCost());
+                addBookingStatement.setInt(5, customerID);
+                addBookingStatement.executeUpdate();
+
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            connection.close();
+        }
+        return false;
+
+    }
+
+    public static boolean addDogs(int customerID, ArrayList<Dog> dogs) throws SQLException {
+        try {
+            connection = getConn();
+            if (connection != null) {
+                PreparedStatement addDog = connection.prepareStatement(
+                        "INSERT INTO DOGS(name, size, visits, customerID, dogBreedID) VALUES (?,?,?,?,?)");
+                for (Dog dogDetails : dogs) {
+                    addDog.setString(1, dogDetails.getName());
+                    addDog.setString(2, dogDetails.getSize());
+                    addDog.setInt(3, 5);
+                    addDog.setInt(4, customerID);
+                    addDog.setDouble(5, dogDetails.getBreed());
+                    addDog.executeUpdate();
+                }
+
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            connection.close();
+        }
+        return false;
+
+    }
+
+    public static int addNewCustomer(Customer customerDetails) throws SQLException {
+        try {
+            connection = getConn();
+            if (connection != null) {
+                PreparedStatement statement = connection.prepareStatement(
+                        "INSERT INTO CUSTOMERS(name, surname, phoneNumber, email) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+                statement.setString(1, customerDetails.getName());
+                statement.setString(2, customerDetails.getSurname());
+                statement.setString(3, customerDetails.getPhoneNumber());
+                statement.setString(4, customerDetails.getEmail());
+                statement.executeUpdate();
+
+                ResultSet key = statement.getGeneratedKeys();
+                int newUserID = 0;
+                if (key.next()) {
+                    newUserID = key.getInt(1);
+                }
+                return newUserID;
+            }
+        } catch (Exception exc) {
+            System.out.println(exc);
+
+        } finally {
+            connection.close();
+        }
+        return 0;
+    }
 }
