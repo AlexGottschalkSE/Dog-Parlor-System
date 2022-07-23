@@ -189,10 +189,10 @@ public class StaffMainPage extends javax.swing.JFrame {
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
 
-       // BookCatsPage page = new BookCatsPage();
-       // page.setStaffMemberDetails(staffMemberDetails);
-       /// page.setVisible(true);
-       // this.setVisible(false);
+       BookCatsPage page = new BookCatsPage();
+       page.setStaffMemberDetails(staffMemberDetails);
+       page.setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_jLabel13MouseClicked
 
     /**

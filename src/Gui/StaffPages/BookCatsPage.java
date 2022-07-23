@@ -1,34 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Gui.StaffPages;
 
 import Controllers.StaffController;
 import Models.Booking;
+import Models.Cat;
 import Models.Customer;
-import Models.Dog;
 import Models.StaffMemberDTO;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-/**
- *
- * @author alexg
- */
-public class BookDogsPage extends javax.swing.JFrame {
+public class BookCatsPage extends javax.swing.JFrame {
 
-    private int amountOfDogsForBooking;
-    private int currentDog = 1;
+    private int amountOfCatsForBooking;
+    private int currentCat = 1;
     private StaffMemberDTO staffMemberDetails;
     private final Customer customerDetails = new Customer();
-    ArrayList<Dog> dogs = new ArrayList<>();
+    ArrayList<Cat> cats = new ArrayList<>();
 
     /**
      * Creates new form BookDogsPage
      */
-    public BookDogsPage() {
+    public BookCatsPage() {
         initComponents();
     }
 
@@ -51,7 +42,7 @@ public class BookDogsPage extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         nameInput = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        dogNameInput = new javax.swing.JTextField();
+        catNameInput = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         emailInput = new javax.swing.JTextField();
         jLabel45 = new javax.swing.JLabel();
@@ -61,13 +52,13 @@ public class BookDogsPage extends javax.swing.JFrame {
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        amountOfDogsInput = new javax.swing.JTextField();
+        amountOfCatsInput = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        dogBreedInput = new javax.swing.JTextField();
+        catBreedInput = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        dogSizeInput = new javax.swing.JTextField();
+        catSizeInput = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        dogCountHeading = new javax.swing.JLabel();
+        catCountHeading = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel47 = new javax.swing.JLabel();
@@ -98,7 +89,7 @@ public class BookDogsPage extends javax.swing.JFrame {
         });
 
         jLabel36.setFont(new java.awt.Font("Malgun Gothic", 0, 36)); // NOI18N
-        jLabel36.setText("DOG BOOKINGS PANEL");
+        jLabel36.setText("CAT BOOKINGS PANEL");
         jLabel36.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/australian-shepherd.png"))); // NOI18N
@@ -125,11 +116,11 @@ public class BookDogsPage extends javax.swing.JFrame {
         nameInput.setToolTipText("");
         nameInput.setBorder(null);
 
-        jLabel6.setText("Dog's Name");
+        jLabel6.setText("Cat's Name");
 
-        dogNameInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        dogNameInput.setText("Enter Name");
-        dogNameInput.setBorder(null);
+        catNameInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        catNameInput.setText("Enter Name");
+        catNameInput.setBorder(null);
 
         jLabel42.setText("Email");
 
@@ -154,50 +145,50 @@ public class BookDogsPage extends javax.swing.JFrame {
         jLabel43.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jLabel44.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
-        jLabel44.setText("DOGS DETAILS");
+        jLabel44.setText("CATS DETAILS");
         jLabel44.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jLabel7.setText("Amount of Dogs");
+        jLabel7.setText("Amount of Cats");
 
-        amountOfDogsInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        amountOfDogsInput.setText("3");
-        amountOfDogsInput.setBorder(null);
-        amountOfDogsInput.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        amountOfCatsInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        amountOfCatsInput.setText("3");
+        amountOfCatsInput.setBorder(null);
+        amountOfCatsInput.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                amountOfDogsInputPropertyChange(evt);
+                amountOfCatsInputPropertyChange(evt);
             }
         });
-        amountOfDogsInput.addKeyListener(new java.awt.event.KeyAdapter() {
+        amountOfCatsInput.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                amountOfDogsInputKeyTyped(evt);
+                amountOfCatsInputKeyTyped(evt);
             }
         });
 
-        jLabel8.setText("Dog's Breed");
+        jLabel8.setText("Cat's Breed");
 
-        dogBreedInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        dogBreedInput.setText("Enter Breed");
-        dogBreedInput.setBorder(null);
+        catBreedInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        catBreedInput.setText("Enter Breed");
+        catBreedInput.setBorder(null);
 
-        jLabel9.setText("Dog's Size");
+        jLabel9.setText("Cat's Size");
 
-        dogSizeInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        dogSizeInput.setText("Enter grown/puppy");
-        dogSizeInput.setBorder(null);
+        catSizeInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        catSizeInput.setText("Small/Medium/Large");
+        catSizeInput.setBorder(null);
 
-        jButton2.setText("Add Dog To Booking");
+        jButton2.setText("Add Cat To Booking");
         jButton2.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
                 jButton2ComponentAdded(evt);
             }
         });
         jButton2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jButton2AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -216,7 +207,7 @@ public class BookDogsPage extends javax.swing.JFrame {
             }
         });
 
-        dogCountHeading.setText("Details For Dog");
+        catCountHeading.setText("Details For Cat");
 
         jButton3.setText("Set Amount");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -251,12 +242,12 @@ public class BookDogsPage extends javax.swing.JFrame {
         jButton5.setText("Confirm Booking");
         jButton5.setToolTipText("");
         jButton5.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jButton5AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -310,12 +301,12 @@ public class BookDogsPage extends javax.swing.JFrame {
                             .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9)
                             .addComponent(jLabel6)
-                            .addComponent(dogBreedInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(catBreedInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
-                            .addComponent(dogNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dogCountHeading)
+                            .addComponent(catNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(catCountHeading)
                             .addComponent(jButton2)
-                            .addComponent(dogSizeInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(catSizeInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -327,7 +318,7 @@ public class BookDogsPage extends javax.swing.JFrame {
                             .addComponent(timeInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)))
                     .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(amountOfDogsInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(amountOfCatsInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -339,7 +330,7 @@ public class BookDogsPage extends javax.swing.JFrame {
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(amountOfDogsInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(amountOfCatsInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
                         .addGap(10, 10, 10)
@@ -365,14 +356,14 @@ public class BookDogsPage extends javax.swing.JFrame {
                         .addComponent(emailInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(dogCountHeading)
+                        .addComponent(catCountHeading)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dogNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(catNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(customerTypeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -380,14 +371,14 @@ public class BookDogsPage extends javax.swing.JFrame {
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dogBreedInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(catBreedInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dateInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dogSizeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(catSizeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -446,12 +437,12 @@ public class BookDogsPage extends javax.swing.JFrame {
         jLabel41.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         jLabel41.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel41.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jLabel41AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -524,14 +515,14 @@ public class BookDogsPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel35MouseClicked
 
     private void jLabel37MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel37MouseClicked
-
-    }//GEN-LAST:event_jLabel37MouseClicked
-
-    private void jLabel40MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel40MouseClicked
-        BookCatsPage page = new BookCatsPage();
+        BookDogsPage page = new BookDogsPage();
         page.setStaffMemberDetails(staffMemberDetails);
         page.setVisible(true);
         this.setVisible(false);
+    }//GEN-LAST:event_jLabel37MouseClicked
+
+    private void jLabel40MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel40MouseClicked
+
 
     }//GEN-LAST:event_jLabel40MouseClicked
 
@@ -557,31 +548,31 @@ public class BookDogsPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void amountOfDogsInputPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_amountOfDogsInputPropertyChange
+    private void amountOfCatsInputPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_amountOfCatsInputPropertyChange
 
-    }//GEN-LAST:event_amountOfDogsInputPropertyChange
+    }//GEN-LAST:event_amountOfCatsInputPropertyChange
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        String dogName = dogNameInput.getText();
-        int dogBreed = Integer.valueOf(dogBreedInput.getText());
-        String dogSize = dogSizeInput.getText();
-        Dog dog = new Dog(dogName, dogSize, dogBreed);
-        dogs.add(dog);
+        String catName = catNameInput.getText();
+        int catBreed = Integer.valueOf(catBreedInput.getText());
+        String catSize = catSizeInput.getText();
+        Cat cat = new Cat(catName, catSize, catBreed);
+        cats.add(cat);
 
-        currentDog++;
-        if (currentDog > amountOfDogsForBooking) {
+        currentCat++;
+        if (currentCat > amountOfCatsForBooking) {
             jButton2.enable(false);
         }
-        dogCountHeading.setText("Details for Dog " + currentDog);
+        catCountHeading.setText("Details for Cat " + currentCat);
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void amountOfDogsInputKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountOfDogsInputKeyTyped
+    private void amountOfCatsInputKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountOfCatsInputKeyTyped
 
-    }//GEN-LAST:event_amountOfDogsInputKeyTyped
+    }//GEN-LAST:event_amountOfCatsInputKeyTyped
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        amountOfDogsForBooking = Integer.valueOf(amountOfDogsInput.getText());
-        dogCountHeading.setText("Details for Dog 1");
+        amountOfCatsForBooking = Integer.valueOf(amountOfCatsInput.getText());
+        catCountHeading.setText("Details for Cat 1");
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -617,8 +608,8 @@ public class BookDogsPage extends javax.swing.JFrame {
         Double totalCost = 0.0;
         Double cost = 0.0;
         int i = 0;
-        for (Dog dog : dogs) {
-            String size = dogs.get(i).getSize();
+        for (Cat cat : cats) {
+            String size = cats.get(i).getSize();
 
             switch (size) {
                 case "Small":
@@ -638,8 +629,8 @@ public class BookDogsPage extends javax.swing.JFrame {
         String date = dateInput.getText();
         String time = timeInput.getText();
 
-        Booking booking = new Booking(date, time, amountOfDogsForBooking, totalCost);
-        StaffController.manageDogBooking(customerDetails, booking, dogs);
+        Booking booking = new Booking(date, time, amountOfCatsForBooking, totalCost);
+        StaffController.manageCatBooking(customerDetails, booking, cats);
 
     }//GEN-LAST:event_jButton5MouseClicked
 
@@ -676,32 +667,33 @@ public class BookDogsPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BookDogsPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookCatsPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BookDogsPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookCatsPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BookDogsPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookCatsPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BookDogsPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookCatsPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BookDogsPage().setVisible(true);
+                new BookCatsPage().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField amountOfDogsInput;
+    private javax.swing.JTextField amountOfCatsInput;
+    private javax.swing.JTextField catBreedInput;
+    private javax.swing.JLabel catCountHeading;
+    private javax.swing.JTextField catNameInput;
+    private javax.swing.JTextField catSizeInput;
     private javax.swing.JTextField customerTypeInput;
     private javax.swing.JTextField dateInput;
-    private javax.swing.JTextField dogBreedInput;
-    private javax.swing.JLabel dogCountHeading;
-    private javax.swing.JTextField dogNameInput;
-    private javax.swing.JTextField dogSizeInput;
     private javax.swing.JTextField emailInput;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
