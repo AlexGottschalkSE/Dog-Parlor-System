@@ -1,11 +1,11 @@
 package Backend;
 
 import Models.Booking;
+import Models.Cat;
 import Models.Customer;
 import Models.Dog;
 import Models.StaffMember;
 import java.sql.*;
-import static java.sql.Statement.RETURN_GENERATED_KEYS;
 import java.util.ArrayList;
 
 public class DatabaseServices {
@@ -239,6 +239,30 @@ public class DatabaseServices {
         }
     }
 
+    public static void manageCatBooking(Customer customerDetails, Booking bookingDetails, ArrayList cats) throws SQLException {
+        try {
+            connection = getConn();
+
+            if (connection != null) {
+                int foundCustomerID = checkForCustomerExistance(customerDetails);
+                if (foundCustomerID > 0) {
+                    //Found customer in database
+                    addBooking(foundCustomerID, bookingDetails);
+                    addCats(foundCustomerID, cats);
+                } else {
+                    int newCustomerID = addNewCustomer(customerDetails);
+                    addBooking(newCustomerID, bookingDetails);
+                    addCats(newCustomerID, cats);
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            connection.close();
+        }
+    }
+
     public static int checkForCustomerExistance(Customer customerDetails) throws SQLException {
         try {
             connection = getConn();
@@ -301,6 +325,30 @@ public class DatabaseServices {
                     addDog.setDouble(5, dogDetails.getBreed());
                     addDog.executeUpdate();
                 }
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            connection.close();
+        }
+        return false;
+    }
+
+    public static boolean addCats(int customerID, ArrayList<Cat> cats) throws SQLException {
+        try {
+            connection = getConn();
+            if (connection != null) {
+                PreparedStatement addDog = connection.prepareStatement(
+                        "INSERT INTO CATS(name, size, visits, customerID, catBreedID) VALUES (?,?,?,?,?)");
+                for (Cat catDetails : cats) {
+                    addDog.setString(1, catDetails.getName());
+                    addDog.setString(2, catDetails.getSize());
+                    addDog.setInt(3, 5);
+                    addDog.setInt(4, customerID);
+                    addDog.setDouble(5, catDetails.getBreed());
+                    addDog.executeUpdate();
+                }
 
                 return true;
             }
@@ -310,7 +358,6 @@ public class DatabaseServices {
             connection.close();
         }
         return false;
-
     }
 
     public static int addNewCustomer(Customer customerDetails) throws SQLException {

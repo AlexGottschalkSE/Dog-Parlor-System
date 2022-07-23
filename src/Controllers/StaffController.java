@@ -16,4 +16,13 @@ public class StaffController {
         return false;
     }
 
+    public static boolean manageCatBooking(Customer customerDetails, Booking bookingDetails, ArrayList cats) {
+        try {
+            DatabaseServices.manageCatBooking(customerDetails, bookingDetails, cats);
+            return true;
+        } catch (Exception e) {
+        }
+        return false;
+    }
+
 }
