@@ -5,7 +5,11 @@
  */
 package Gui.StaffPages;
 
+import Models.Booking;
+import Models.Customer;
+import Models.Dog;
 import Models.StaffMemberDTO;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -14,7 +18,12 @@ import java.util.Calendar;
  */
 public class BookDogsPage extends javax.swing.JFrame {
 
+    private int amountOfDogsForBooking;
+    private int currentDog = 1;
     private StaffMemberDTO staffMemberDetails;
+    private Customer customerDetails;
+    ArrayList<Dog> dogs = new ArrayList<>();
+    private Double totalCost;
 
     /**
      * Creates new form BookDogsPage
@@ -39,18 +48,33 @@ public class BookDogsPage extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
-        jLabel38 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         nameInput = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        surnameInput = new javax.swing.JTextField();
+        dogNameInput = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         emailInput = new javax.swing.JTextField();
+        jLabel45 = new javax.swing.JLabel();
+        surnameInput = new javax.swing.JTextField();
+        jLabel46 = new javax.swing.JLabel();
+        phoneNumberInput = new javax.swing.JTextField();
         jLabel43 = new javax.swing.JLabel();
-        passwordInput = new javax.swing.JTextField();
         jLabel44 = new javax.swing.JLabel();
-        permissionTypeInput = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        amountOfDogsInput = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        dogBreedInput = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        dogSizeInput = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        dogCountHeading = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        newCustomerCheckBox = new java.awt.Checkbox();
+        jButton5 = new javax.swing.JButton();
+        jLabel38 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel41 = new javax.swing.JLabel();
@@ -90,21 +114,17 @@ public class BookDogsPage extends javax.swing.JFrame {
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
-        jLabel38.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
-        jLabel38.setText("ADD NEW BOOKING");
-        jLabel38.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        jLabel5.setText("Name");
+        jLabel5.setText("Customer Name");
 
         nameInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         nameInput.setText("Enter Name");
         nameInput.setBorder(null);
 
-        jLabel6.setText("Surname");
+        jLabel6.setText("Dog's Name");
 
-        surnameInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        surnameInput.setText("Enter Surname");
-        surnameInput.setBorder(null);
+        dogNameInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        dogNameInput.setText("Enter Name");
+        dogNameInput.setBorder(null);
 
         jLabel42.setText("Email");
 
@@ -112,22 +132,136 @@ public class BookDogsPage extends javax.swing.JFrame {
         emailInput.setText("Enter Email");
         emailInput.setBorder(null);
 
-        jLabel43.setText("Password");
+        jLabel45.setText("Customer Surname");
 
-        passwordInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        passwordInput.setText("Enter Password");
-        passwordInput.setBorder(null);
+        surnameInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        surnameInput.setText("Enter Name");
+        surnameInput.setBorder(null);
 
-        jLabel44.setText("Permission Type");
+        jLabel46.setText("Phone Number");
 
-        permissionTypeInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        permissionTypeInput.setText("Enter Admin/Staff");
-        permissionTypeInput.setBorder(null);
+        phoneNumberInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        phoneNumberInput.setText("Enter Phone Number");
+        phoneNumberInput.setBorder(null);
 
-        jButton1.setText("Confirm");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel43.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
+        jLabel43.setText("CUSTOMER DETAILS");
+        jLabel43.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        jLabel44.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
+        jLabel44.setText("DOGS DETAILS");
+        jLabel44.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        jLabel7.setText("Amount of Dogs");
+
+        amountOfDogsInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        amountOfDogsInput.setText("Enter Amount");
+        amountOfDogsInput.setBorder(null);
+        amountOfDogsInput.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                amountOfDogsInputPropertyChange(evt);
+            }
+        });
+        amountOfDogsInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                amountOfDogsInputKeyTyped(evt);
+            }
+        });
+
+        jLabel8.setText("Dog's Breed");
+
+        dogBreedInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        dogBreedInput.setText("Enter Breed");
+        dogBreedInput.setBorder(null);
+
+        jLabel9.setText("Dog's Size");
+
+        dogSizeInput.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        dogSizeInput.setText("Enter grown/puppy");
+        dogSizeInput.setBorder(null);
+
+        jButton2.setText("Add Dog To Booking");
+        jButton2.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                jButton2ComponentAdded(evt);
+            }
+        });
+        jButton2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jButton2AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jButton2ComponentShown(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        dogCountHeading.setText("Details For Dog");
+
+        jButton3.setText("Set Amount");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Add Owner To Booking");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel47.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
+        jLabel47.setText("EXTRA DETAILS");
+        jLabel47.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        jLabel10.setText("New Customer?");
+
+        jButton5.setText("Confirm Booking");
+        jButton5.setToolTipText("");
+        jButton5.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jButton5AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
             }
         });
 
@@ -138,55 +272,110 @@ public class BookDogsPage extends javax.swing.JFrame {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(nameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(surnameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel42)
-                    .addComponent(emailInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel43)
-                    .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel44)
-                    .addComponent(permissionTypeInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(surnameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel45)
+                            .addComponent(jLabel46)
+                            .addComponent(phoneNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel42)
+                            .addComponent(jButton4))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dogSizeInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel6)
+                                    .addComponent(dogBreedInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(dogNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dogCountHeading)
+                                    .addComponent(jButton2))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel13Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(newCustomerCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(amountOfDogsInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel38)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(surnameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel42)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(emailInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel43)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel44)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(permissionTypeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(amountOfDogsInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel43)
+                            .addComponent(jLabel44)
+                            .addComponent(jLabel47))
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel45)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(surnameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel46)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(phoneNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel42)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emailInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(newCustomerCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(dogCountHeading)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dogNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dogBreedInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dogSizeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
+                .addGap(55, 55, 55))
         );
+
+        jLabel38.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
+        jLabel38.setText("ADD NEW BOOKING");
+        jLabel38.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -194,21 +383,27 @@ public class BookDogsPage extends javax.swing.JFrame {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(243, 243, 243)
+                .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 165, Short.MAX_VALUE))))
+                        .addGap(0, 126, Short.MAX_VALUE))))
         );
 
         jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cat.png"))); // NOI18N
@@ -224,12 +419,12 @@ public class BookDogsPage extends javax.swing.JFrame {
         jLabel41.setFont(new java.awt.Font("Malgun Gothic", 0, 12)); // NOI18N
         jLabel41.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel41.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jLabel41AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -256,7 +451,7 @@ public class BookDogsPage extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 366, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel35)))))
                 .addContainerGap())
         );
@@ -271,7 +466,7 @@ public class BookDogsPage extends javax.swing.JFrame {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
@@ -325,41 +520,85 @@ public class BookDogsPage extends javax.swing.JFrame {
         } else {
             decodedPeriod = AM;
         }
-        jLabel10.setText("Good " + decodedPeriod + " " + staffMemberDetails.getName());
+        jLabel41.setText("Good " + decodedPeriod + " " + staffMemberDetails.getName());
     }//GEN-LAST:event_jLabel41AncestorAdded
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        String name = nameInput.getText();
-        String surname = surnameInput.getText();
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void amountOfDogsInputPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_amountOfDogsInputPropertyChange
+
+    }//GEN-LAST:event_amountOfDogsInputPropertyChange
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        String dogName = dogNameInput.getText();
+        int dogBreed = Integer.valueOf(dogBreedInput.getText());
+        String dogSize = dogSizeInput.getText();      
+        Dog dog = new Dog(dogName, dogSize, dogBreed);
+        dogs.add(dog);
+
+        currentDog++;
+        if (currentDog > amountOfDogsForBooking) {
+            jButton2.enable(false);
+        }
+        dogCountHeading.setText("Details for Dog " + currentDog);
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void amountOfDogsInputKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountOfDogsInputKeyTyped
+
+    }//GEN-LAST:event_amountOfDogsInputKeyTyped
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        amountOfDogsForBooking = Integer.valueOf(amountOfDogsInput.getText());
+        dogCountHeading.setText("Details for Dog 1");
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        String ownerName = nameInput.getText();
+        String ownerSurname = surnameInput.getText();
+        String phoneNumber = phoneNumberInput.getText();
         String email = emailInput.getText();
-        String password = passwordInput.getText();
-        String permissionTypeString = permissionTypeInput.getText();
-        String encryptedPassword = "";
-        int permissionType = 0;
 
-        try {
-            encryptedPassword = (Security.encryptString(password));
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        customerDetails = new Customer(ownerName, ownerSurname, phoneNumber, email);
+        jButton4.enable(false);
+    }//GEN-LAST:event_jButton4MouseClicked
 
-        switch (permissionTypeString) {
-            case "Admin":
-            permissionType = 2;
-            break;
-            case "Staff":
-            permissionType = 1;
-            break;
-        }
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
-        StaffMember newMember = new StaffMember(name, surname, encryptedPassword, permissionType, email);
-        if (AdminController.addNewStaffMemberToDatabase(newMember) == false) {
-            System.out.println("New Member Could Not Be Added");
-        } else {
-            System.out.println("New Member Added");
-        }
-    }//GEN-LAST:event_jButton1MouseClicked
-    
+    private void jButton2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jButton2AncestorAdded
+
+    }//GEN-LAST:event_jButton2AncestorAdded
+
+    private void jButton5AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jButton5AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5AncestorAdded
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+       
+        
+        
+        Booking booking = new Booking();
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jButton2ComponentAdded
+
+    }//GEN-LAST:event_jButton2ComponentAdded
+
+    private void jButton2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jButton2ComponentShown
+
+    }//GEN-LAST:event_jButton2ComponentShown
+
     public void setStaffMemberDetails(StaffMemberDTO details) {
         this.staffMemberDetails = details;
     }
@@ -400,71 +639,42 @@ public class BookDogsPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField amountOfDogsInput;
+    private javax.swing.JTextField dogBreedInput;
+    private javax.swing.JLabel dogCountHeading;
+    private javax.swing.JTextField dogNameInput;
+    private javax.swing.JTextField dogSizeInput;
     private javax.swing.JTextField emailInput;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField nameInput;
-    private javax.swing.JTextField passwordInput;
-    private javax.swing.JTextField permissionTypeInput;
+    private java.awt.Checkbox newCustomerCheckBox;
+    private javax.swing.JTextField phoneNumberInput;
     private javax.swing.JTextField surnameInput;
     // End of variables declaration//GEN-END:variables
 }
