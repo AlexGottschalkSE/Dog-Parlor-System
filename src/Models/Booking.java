@@ -1,31 +1,29 @@
 package Models;
 
-import java.sql.Date;
-import java.sql.Time;
 
 public class Booking {
     private int bookingID;
-    private Date date;
-    private Time time;
-    private int amountOfDogs;
+    private String date;
+    private String time;
+    private int amountOfPets;
     private Double totalCost;
     private int customerID;
     
     public Booking(){ 
     }
 
-    public Booking(Date date, Time time, int amountOfDogs, Double totalCost) {
+    public Booking(String date, String time, int amountOfPets, Double totalCost) {
         this.date = date;
         this.time = time;
-        this.amountOfDogs = amountOfDogs;
+        this.amountOfPets = amountOfPets;
         this.totalCost = totalCost;
     }
 
-    public Booking(int bookingID, Date date, Time time, int amountOfDogs, Double totalCost, int customerID) {
+    public Booking(int bookingID, String date, String time, int amountOfPets, Double totalCost, int customerID) {
         this.bookingID = bookingID;
         this.date = date;
         this.time = time;
-        this.amountOfDogs = amountOfDogs;
+        this.amountOfPets = amountOfPets;
         this.totalCost = totalCost;
         this.customerID = customerID;
     }
@@ -39,28 +37,28 @@ public class Booking {
         this.bookingID = bookingID;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
     public int getAmountOfDogs() {
-        return amountOfDogs;
+        return amountOfPets;
     }
 
-    public void setAmountOfDogs(int amountOfDogs) {
-        this.amountOfDogs = amountOfDogs;
+    public void setAmountOfDogs(int amountOfPets) {
+        this.amountOfPets = amountOfPets;
     }
 
     public Double getTotalCost() {
